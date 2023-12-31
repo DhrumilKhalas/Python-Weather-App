@@ -1,0 +1,30 @@
+This code is a simple Weather App GUI (Graphical User Interface) created using the `tkinter` library in Python. It allows users to enter a city name and get the current weather information for that city.
+
+Here's an explanation of the different parts of the code:
+
+1. **Imports:** The code starts with importing necessary libraries and modules:
+   - `tkinter`: For creating the GUI.
+   - `geopy.geocoders`: For geocoding (converting city names to geographical coordinates).
+   - `timezonefinder`: For finding the timezone of the given location.
+   - `datetime`: For working with dates and times.
+   - `requests`: For making HTTP requests to the OpenWeatherMap API.
+   - `pytz`: For working with timezones.
+
+2. **Tkinter Setup:** It sets up the main GUI window with a fixed size of 900x500 and sets the title of the window.
+
+3. **getWeather Function:** This function is responsible for fetching and displaying the weather information for the entered city. It uses various libraries and APIs to perform the following tasks:
+   - Uses `Nominatim` from `geopy.geocoders` to convert the city name to geographical coordinates (latitude and longitude).
+   - Uses `TimezoneFinder` to find the timezone of the location based on its latitude and longitude.
+   - Gets the current time in the local timezone of the location using `pytz` and `datetime`.
+   - Constructs the API URL for the OpenWeatherMap API, including the city name and the API key, and fetches the weather data using `requests.get`.
+   - Extracts relevant weather information such as temperature, pressure, humidity, wind speed, and weather description from the API response.
+
+4. **Search Box:** It consists of an entry widget (`textfield`) where the user can enter the city name. A search icon (`myimage_icon`) is placed next to the entry widget, and clicking on the icon triggers the `getWeather` function to fetch the weather data for the entered city.
+
+5. **Logo:** It displays an image logo (`logo`) on the GUI.
+
+6. **Weather Information Display:** It displays the weather information on the GUI, such as the current time (`clock`), a label indicating "CURRENT WEATHER" (`name`), the temperature and weather condition (`t` and `c`), wind speed (`w`), humidity (`h`), weather description (`d`), and atmospheric pressure (`p`).
+
+The weather information is fetched from the OpenWeatherMap API (https://openweathermap.org/api) using the provided API key. Please make sure to replace `"YOUR_API_KEY_HERE"` in the `api` variable with your actual API key from OpenWeatherMap to make the weather app work properly.
+
+Overall, this GUI-based Weather App allows users to enter a city name and get real-time weather information for that city, including temperature, weather conditions, wind speed, humidity, and atmospheric pressure.
