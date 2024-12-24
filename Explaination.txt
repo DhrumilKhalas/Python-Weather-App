@@ -25,6 +25,6 @@ Here's an explanation of the different parts of the code:
 
 6. **Weather Information Display:** It displays the weather information on the GUI, such as the current time (`clock`), a label indicating "CURRENT WEATHER" (`name`), the temperature and weather condition (`t` and `c`), wind speed (`w`), humidity (`h`), weather description (`d`), and atmospheric pressure (`p`).
 
-The weather information is fetched from the OpenWeatherMap API (https://openweathermap.org/api) using the provided API key. Please make sure to replace `"YOUR_API_KEY_HERE"` in the `api` variable with your actual API key from OpenWeatherMap to make the weather app work properly.
+The weather information is fetched from the OpenWeatherMap API (https://openweathermap.org/api) using the provided API key. Please make sure to replace `<YOUR_API_KEY_HERE>` in the `api` variable with your actual API key from OpenWeatherMap to make the weather app work properly.
 
 Overall, this GUI-based Weather App allows users to enter a city name and get real-time weather information for that city, including temperature, weather conditions, wind speed, humidity, and atmospheric pressure.

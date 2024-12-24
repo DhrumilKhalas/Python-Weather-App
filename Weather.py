@@ -1,3 +1,5 @@
+# Please make sure to replace `<YOUR_API_KEY_HERE>` in the `api` variable at line number 38 with your actual API key from OpenWeatherMap.
+
 from tkinter import *
 import tkinter as tk
 from geopy.geocoders import Nominatim
@@ -15,9 +17,8 @@ root.resizable(False, False)
 def getWeather():
     try:
         city = textfield.get()
-        geolocator = Nominatim(user_agent="geoapiExercises")
+        geolocator = Nominatim(user_agent="my_weather_app")
         location = geolocator.geocode(city)
-
         if location is None:
             messagebox.showerror("Weather App", "City not found!")
             return
@@ -25,17 +26,17 @@ def getWeather():
         obj = TimezoneFinder()
         result = obj.timezone_at(lng=location.longitude, lat=location.latitude)
     
-        name.config(text="CURRENT WEATHER")
+        name.config(text="CURRENT TIME & DATE")
         home = pytz.timezone(result)
         local_time = datetime.now(home)
         current_time = local_time.strftime("%I:%M %p")
+        current_date = local_time.strftime("%d %B %Y")
         clock.config(text=current_time)
-        
+        date.config(text=current_date)
 
         #  weather
-        api = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=e82e468f9e70bac860a7df1f73182caf&units=metric"  
+        api = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=<YOUR_API_KEY_HERE>&units=metric"
         json_data = requests.get(api).json()
-        print(json_data)
         condition = json_data["weather"][0]["main"]
         description = json_data["weather"][0]["description"]
         temp = int(json_data["main"]["temp"])
@@ -43,8 +44,8 @@ def getWeather():
         humidity = json_data["main"]["humidity"]
         wind = json_data["wind"]["speed"]
 
-        t.config(text=(temp, "°"))
-        c.config(text=(condition, "|", "FEELS", "LIKE", temp, "°"))
+        t.config(text=(temp, "°C"))
+        c.config(text=(condition, "|", "FEELS", "LIKE", temp, "°C"))
 
         w.config(text=wind)
         h.config(text=humidity)
@@ -52,7 +53,6 @@ def getWeather():
         p.config(text=pressure)
 
     except Exception as e:
-        print("exception***", e)
         messagebox.showerror("Weather App", "Invalid Entry!")
 
 
@@ -85,6 +85,8 @@ frame_myimage.pack(padx=5, pady=5, side=BOTTOM)
 # Time
 clock = Label(root, font=("Helvetica", 20))
 clock.place(x=30, y=210)
+date = Label(root, font=("Helvetica", 20))
+date.place(x=30, y=240)
 name = Label(root, font=("arial", 15, "bold"))
 name.place(x=30, y=180)
 
